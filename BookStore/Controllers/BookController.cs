@@ -1,4 +1,6 @@
 ﻿using BookStore.BookOperations.CreateBook;
+using BookStore.BookOperations.DeleteBook;
+using BookStore.BookOperations.GetBookDetail;
 using BookStore.BookOperations.GetBooks;
 using BookStore.BookOperations.UpdateBook;
 using BookStore.Model;
@@ -37,13 +39,14 @@ namespace BookStore.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-
-            GetBooksQuery query = new GetBooksQuery(_context);
-            var result = new BooksViewModel();
+            var result = new BookDetailViewModel();
 
             try
             {
-                 result = query.GetByID(id);
+                BookDetailQuery query = new BookDetailQuery(_context);
+                query.BookID = id;
+                
+                result = query.Handle();
             }
             catch (Exception ex)
             {
@@ -80,15 +83,17 @@ namespace BookStore.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] UpdateBookInputModel newBook)
+        public IActionResult Update(int id, [FromBody] UpdateBookModel newBook)
         {
 
-            UpdateBookCommend commend = new UpdateBookCommend(_context);
-            var result = new UpdateBookOutputModel();
+         
+            var result = new UpdateBookViewModel();
             
 
             try
             {
+                UpdateBookCommend commend = new UpdateBookCommend(_context);
+                commend.BookId = id;
                 commend.Model = newBook;
                 result = commend.Handle();
 
@@ -108,14 +113,21 @@ namespace BookStore.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var book = _context.Books.SingleOrDefault(x => x.ID == id);
-            if (book is null)
-            {
-                return BadRequest();
-            }
 
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+
+          
+
+            try
+            {
+                DeleteBookCommend commend = new DeleteBookCommend(_context);
+                commend.BookId = id;
+                commend.Handle();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
 
             return Ok();
 

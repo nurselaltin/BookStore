@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f6mNgoN2fTslN0pEBn9SkaIOn6Zn08yVeO0YKj94fpxlObiOFUeZAGIFMXG9hJMJwFxFeyNxc6Mf3pncbhnTPA==",
+  "dgSpecHash": "Sts8uZylef0Dvvyr4gXJqIolohJes47KckEkwHqfBkK4iFEag82aanaV6OX6Cfwo8lEh0c7NgE1MN2yo496D6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nursel\\Desktop\\Software\\Projects\\C#\\Ornek-Projeler\\APIs\\BookStore\\BookStore\\BookStore.csproj",
+  "projectFilePath": "C:\\Users\\Nursel\\Desktop\\Software\\Projects\\C#\\Ornek-Projeler\\Gİt\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nursel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Nursel\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

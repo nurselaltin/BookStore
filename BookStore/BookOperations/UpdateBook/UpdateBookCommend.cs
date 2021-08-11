@@ -10,7 +10,9 @@ namespace BookStore.BookOperations.UpdateBook
     public class UpdateBookCommend
     {
 
-        public UpdateBookInputModel Model { get; set; }
+        public UpdateBookModel Model { get; set; }
+
+        public int BookId { get; set; }
 
         private readonly BookStoreInMemoryContext _context;
    
@@ -20,32 +22,30 @@ namespace BookStore.BookOperations.UpdateBook
         }
 
 
-        public UpdateBookOutputModel Handle()
+        public UpdateBookViewModel Handle()
         {
 
-            var book = _context.Books.Find(Model.ID);
+            var book = _context.Books.Find(BookId);
 
             if (book is null)
                 throw new InvalidOperationException("Böyle bir kitap mevcut değil");
 
             book.Title = Model.Title != default ? Model.Title : book.Title;
-            book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
-
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
-            book.Author = Model.Author != default ? Model.Author : book.Author;
+            
 
             _context.Books.Update(book);
             _context.SaveChanges();
 
 
-            //return to oupt model
+         
 
-            var bookViewModel = new UpdateBookOutputModel() {
+            var bookViewModel = new UpdateBookViewModel() {
 
                 Title = book.Title,
-                Author = book.Author,
-                Genre = book.GenreId,
-                PageCount = book.PageCount
+     
+                Genre = ((GenreEnum)book.GenreId).ToString(),
+                
 
             };
 
@@ -63,30 +63,27 @@ namespace BookStore.BookOperations.UpdateBook
 
     }
 
-    public class UpdateBookInputModel
+    public class UpdateBookModel
     {
 
-        public int ID { get; set; }
+   
         public string Title { get; set; }
 
         public int GenreId { get; set; }
 
-        public int PageCount { get; set; }
+       
 
-        public string Author { get; set; }
 
 
     }
 
-    public class UpdateBookOutputModel
+    public class UpdateBookViewModel
     {
         public string Title { get; set; }
 
-        public int Genre { get; set; }
+        public string Genre { get; set; }
 
-        public int PageCount { get; set; }
-
-        public string Author { get; set; }
+     
 
 
     }
