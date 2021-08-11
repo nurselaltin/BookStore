@@ -1,4 +1,5 @@
-﻿using BookStore.Common;
+﻿using AutoMapper;
+using BookStore.Common;
 using BookStore.Model;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,13 @@ namespace BookStore.BookOperations.UpdateBook
         public int BookId { get; set; }
 
         private readonly BookStoreInMemoryContext _context;
+
+        private readonly IMapper _mapper;
    
-        public UpdateBookCommend(BookStoreInMemoryContext context)
+        public UpdateBookCommend(BookStoreInMemoryContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -29,6 +33,8 @@ namespace BookStore.BookOperations.UpdateBook
 
             if (book is null)
                 throw new InvalidOperationException("Böyle bir kitap mevcut değil");
+
+          
 
             book.Title = Model.Title != default ? Model.Title : book.Title;
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;

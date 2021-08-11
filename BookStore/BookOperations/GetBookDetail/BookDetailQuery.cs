@@ -1,4 +1,5 @@
-﻿using BookStore.Common;
+﻿using AutoMapper;
+using BookStore.Common;
 using BookStore.Model;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,14 @@ namespace BookStore.BookOperations.GetBookDetail
 
         public int BookID { get; set; }
 
+        private readonly IMapper _mapper;
 
 
-        public BookDetailQuery(BookStoreInMemoryContext context)
+
+        public BookDetailQuery(BookStoreInMemoryContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
 
         }
 
@@ -34,14 +38,17 @@ namespace BookStore.BookOperations.GetBookDetail
             if (book is null)
                 throw new InvalidOperationException("Böyle bir kitap mevcut değil!");
 
-            var bookViewModel = new BookDetailViewModel()
-            {
-                 Author = book.Author,
-                 Genre = ((GenreEnum)book.GenreId).ToString(),
-                 PageCount = book.PageCount,
-                 Title = book.Title
-                 
-            };
+            //Mapplemeden önceki eşleme
+            //var bookViewModel = new BookDetailViewModel()
+            //{
+            //     Author = book.Author,
+            //     Genre = ((GenreEnum)book.GenreId).ToString(),
+            //     PageCount = book.PageCount,
+            //     Title = book.Title
+
+            //};
+
+            var bookViewModel = _mapper.Map<BookDetailViewModel>(book); 
 
             return bookViewModel;
 
