@@ -1,4 +1,6 @@
+using BookStore.Middlewares;
 using BookStore.Model;
+using BookStore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,7 @@ namespace BookStore
             services.AddDbContext<BookStoreInMemoryContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB2"));
             // AutoMapper ,AutoMapperDeepencyInjection kütüphanelerini kullanacaðýmýzý projeye bildiriyoruz.
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddSingleton<ILoggerService,DBLogger>();
         
         
         }
@@ -49,6 +52,8 @@ namespace BookStore
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

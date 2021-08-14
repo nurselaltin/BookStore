@@ -45,20 +45,11 @@ namespace BookStore.Controllers
         {
             var result = new BookDetailViewModel();
 
-            try
-            {
-                BookDetailQuery query = new BookDetailQuery(_context,_mapper);
-                query.BookID = id;
-                
-                result = query.Handle();
-            }
-            catch (Exception ex)
-            {
+            BookDetailQuery query = new BookDetailQuery(_context, _mapper);
+            query.BookID = id;
 
-                return BadRequest(ex.Message);
-            }
+            result = query.Handle();
 
-          
             return Ok(result);
 
         }
@@ -70,31 +61,23 @@ namespace BookStore.Controllers
         {
             CreateBookCommend commend = new CreateBookCommend(_context,_mapper);
 
-            try
-            {
-                commend.Model = newBook;
+            commend.Model = newBook;
 
-                CreateBookCommendValidator val = new CreateBookCommendValidator();
+            CreateBookCommendValidator val = new CreateBookCommendValidator();
 
-                val.ValidateAndThrow(commend);
+            //Buradan bir hata alırsa MiddlewareException katmanı bu hatayı yakalayacak
+            val.ValidateAndThrow(commend);
 
-                //ValidationResult result = val.Validate(commend);
+            //ValidationResult result = val.Validate(commend);
 
-                //if(!result.IsValid)
-                //    foreach (var item in result.Errors)
-                //    {
+            //if(!result.IsValid)
+            //    foreach (var item in result.Errors)
+            //    {
 
-                //        Console.WriteLine("Özellik" + item.PropertyName + " - Error Message : " + item.ErrorMessage);
-                //    }
-                //else
-                commend.Handle();
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-          
+            //        Console.WriteLine("Özellik" + item.PropertyName + " - Error Message : " + item.ErrorMessage);
+            //    }
+            //else
+            commend.Handle();
 
             return Ok();
 
@@ -106,29 +89,21 @@ namespace BookStore.Controllers
 
          
             var result = new UpdateBookViewModel();
-            
-
-            try
-            {
-                UpdateBookCommend commend = new UpdateBookCommend(_context,_mapper);
-                commend.BookId = id;
-                commend.Model = newBook;
-
-                UpdateBookCommendValidator val = new UpdateBookCommendValidator();
-                val.ValidateAndThrow(commend);
 
 
 
-                result = commend.Handle();
+            UpdateBookCommend commend = new UpdateBookCommend(_context, _mapper);
+            commend.BookId = id;
+            commend.Model = newBook;
 
-            }
-            catch (Exception ex)
-            {
+            UpdateBookCommendValidator val = new UpdateBookCommendValidator();
+            val.ValidateAndThrow(commend);
 
-                return BadRequest(ex.Message);
-            }
 
-        
+
+            result = commend.Handle();
+
+
 
             return Ok(result);
 
@@ -139,23 +114,14 @@ namespace BookStore.Controllers
         {
 
 
-          
 
-            try
-            {
-                DeleteBookCommend commend = new DeleteBookCommend(_context);
-                commend.BookId = id;
+            DeleteBookCommend commend = new DeleteBookCommend(_context);
+            commend.BookId = id;
 
-                DeleteBookCommendValidator val = new DeleteBookCommendValidator();
-                val.ValidateAndThrow(commend);
+            DeleteBookCommendValidator val = new DeleteBookCommendValidator();
+            val.ValidateAndThrow(commend);
 
-                commend.Handle();
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
+            commend.Handle();
 
             return Ok();
 
