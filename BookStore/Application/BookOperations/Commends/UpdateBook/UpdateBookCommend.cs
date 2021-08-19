@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.BookOperations.UpdateBook
+namespace BookStore.Application.BookOperations.UpdateBook
 {
     public class UpdateBookCommend
     {

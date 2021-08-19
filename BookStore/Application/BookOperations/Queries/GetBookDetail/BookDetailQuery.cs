@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using BookStore.Common;
+using BookStore.Entities;
 using BookStore.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.BookOperations.GetBookDetail
+namespace BookStore.Application.BookOperations.GetBookDetail
 {
     public class BookDetailQuery
     {
@@ -33,7 +35,7 @@ namespace BookStore.BookOperations.GetBookDetail
         public BookDetailViewModel Handle()
         {
 
-            var book = _context.Books.SingleOrDefault(z => z.ID == BookID);
+            var book = _context.Books.Include(x => x.Genre).Include(x => x.Author).SingleOrDefault(z => z.ID == BookID);
 
             if (book is null)
                 throw new InvalidOperationException("Böyle bir kitap mevcut değil!");
@@ -68,6 +70,8 @@ namespace BookStore.BookOperations.GetBookDetail
         public string Genre { get; set; }
 
         public string Author { get; set; }
+
+      
 
         public int PageCount { get; set; }
 

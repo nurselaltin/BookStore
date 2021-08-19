@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.BookOperations.CreateBook
+namespace BookStore.Application.BookOperations.CreateBook
 {
     public class CreateBookCommendValidator : AbstractValidator<CreateBookCommend>
     {

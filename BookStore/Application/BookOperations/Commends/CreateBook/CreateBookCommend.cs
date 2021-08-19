@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using BookStore.Entities;
 using BookStore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.BookOperations.CreateBook
+namespace BookStore.Application.BookOperations.CreateBook
 {
     public class CreateBookCommend
     {
@@ -64,7 +65,7 @@ namespace BookStore.BookOperations.CreateBook
 
         public int PageCount { get; set; }
 
-        public string Author { get; set; }
+        public Author Author { get; set; }
 
 
     }

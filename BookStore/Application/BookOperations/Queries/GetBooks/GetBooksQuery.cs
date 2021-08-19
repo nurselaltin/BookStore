@@ -1,11 +1,12 @@
 ﻿using BookStore.Common;
+using BookStore.Entities;
 using BookStore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.BookOperations.GetBooks
+namespace BookStore.Application.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
@@ -42,26 +43,7 @@ namespace BookStore.BookOperations.GetBooks
             return bookViewModel;
         }
 
-        public BooksViewModel GetByID(int id)
-        {
-
-            var book = _context.Books.Find(id);
-            if (book is null)
-                throw new InvalidOperationException("Böyle bir kitap mevcut değil");
-
-            var bookViewModel = new BooksViewModel() {
-
-                Author = book.Author,
-                Genre = ((GenreEnum)book.GenreId).ToString(),
-                PageCount = book.PageCount,
-                Title = book.Title
-
-            
-            };
-
-            return bookViewModel;
-
-        }
+      
 
 
     }
@@ -74,7 +56,7 @@ namespace BookStore.BookOperations.GetBooks
 
         public string Genre { get; set; } 
 
-        public string Author { get; set; }
+        public Author Author { get; set; }
 
         public int PageCount { get; set; }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8r62ltHRqglj4oeBcnyJQbaDNbM0rLMajc3nEV8dmNLEfW8wNC6OAS7zDdzI254a9WbNZnIB43uLN3Z5Wx26sg==",
+  "dgSpecHash": "VaE5dCVDP60FJVB3dCTXo2mxAe3CHEtPJp6ySmkj2zEQlXWUEdk3SIh0Bp3UHYZL0jz2jfKc0ILqA7yUSg3FNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nursel\\Desktop\\Software\\Projects\\C#\\Ornek-Projeler\\Gİt\\BookStore\\BookStore.csproj",
+  "projectFilePath": "C:\\Users\\Nursel\\Desktop\\Software\\Projects\\C#\\Ornek-Projeler\\APIs\\BookStore\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nursel\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Nursel\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

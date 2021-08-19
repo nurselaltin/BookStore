@@ -5,23 +5,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.Model
+namespace BookStore.Entities
 {
-    public class Book
+    public class Author
     {
 
+       
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
 
-        public string Title { get; set; }
+        public int Id { get; set; }
 
-        public int GenreId { get; set; } //Tür
+        public string FirstName { get; set; }
 
-        public string Author { get; set; }
+        public string LastName { get; set; }
 
-        public int  PageCount { get; set; }
+        public DateTime Birthdate { get; set; }
 
-    
+        public List<Book> Book { get; set; }
+
 
 
 

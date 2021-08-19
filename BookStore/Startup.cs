@@ -35,6 +35,7 @@ namespace BookStore
             // AutoMapper ,AutoMapperDeepencyInjection kütüphanelerini kullanacaðýmýzý projeye bildiriyoruz.
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddSingleton<ILoggerService,DBLogger>();
+            
         
         
         }
@@ -52,9 +53,11 @@ namespace BookStore
             app.UseRouting();
 
             app.UseAuthorization();
+            //---Custom Exceptiom Middleware----------
 
             app.UseCustomExceptionMiddleware();
 
+            //------------------------------------------------
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
